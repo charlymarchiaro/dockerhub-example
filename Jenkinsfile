@@ -5,6 +5,8 @@ pipeline {
   }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('docker-hub')
+    KUBERNETES_SERVER = credentials('horse-engine-k8s-server')
+    KUBERNETES_TOKEN = credentials('horse-engine-k8s-token')
   }
   stages {
     stage('Build') {
@@ -12,14 +14,24 @@ pipeline {
         sh 'jenkins/build.sh'
       }
     }
-    stage('Login') {
+    stage('Test') {
+      steps {
+        sh 'jenkins/test.sh'
+      }
+    }
+    stage('Dockerhub login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
-    stage('Push') {
+    stage('Dockerhub push') {
       steps {
         sh 'jenkins/push.sh'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'jenkins/deploy.sh'
       }
     }
   }

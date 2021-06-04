@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-alpine-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: dp-alpine
+  template:
+    metadata:
+      labels:
+        component: dp-alpine
+    spec:
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+      containers:
+        - name: dp-alpine
+          image: charlymarchiaro/dp-alpine
+          ports:
+            - containerPort: 8765
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              cpu: 50m
+              memory: 200Mi
+
+
