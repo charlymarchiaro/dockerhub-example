@@ -5,6 +5,7 @@ pipeline {
   }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('docker-hub')
+    KUBERNETES_CLUSTER_CERTIFICATE = credentials('horse-engine-k8s-cluster-certificate')
     KUBERNETES_SERVER = credentials('horse-engine-k8s-server')
     KUBERNETES_TOKEN = credentials('horse-engine-k8s-token')
   }
