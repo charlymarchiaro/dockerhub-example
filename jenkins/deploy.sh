@@ -8,4 +8,4 @@ kubectl \
   --server=$KUBERNETES_SERVER \
   --certificate-authority=cert.crt \
   --token=$KUBERNETES_TOKEN \
-  set image k8s/deployments/dp-alpine-deployment client=charlymarchiaro/dp-alpine:$SHA
+  set image k8s/deployments/dp-alpine-deployment dp-alpine=charlymarchiaro/dp-alpine:$SHA
