@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push charlymarchiaro/dp-alpine:latest'
+        sh 'jenkins/push.sh'
       }
     }
   }
