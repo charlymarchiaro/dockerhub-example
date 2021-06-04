@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t charlymarchiaro/dp-alpine:latest .'
+        sh 'jenkins/build.sh'
       }
     }
     stage('Login') {

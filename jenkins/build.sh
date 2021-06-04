@@ -1,0 +1,1 @@
+docker build -t charlymarchiaro/dp-alpine:latest .
